@@ -7,6 +7,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -31,9 +32,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     int powerUpCount=3;
 
     //wall storage info
-    Wall mazeWall[] = new Wall[33];
-    ImageView wallImage[] = new ImageView[33];
-    int wallCount = 33;
+    Wall mazeWall[] = new Wall[4];
+    ImageView wallImage[] = new ImageView[4];
+    int wallCount = 4;
 
     //opacity settings
     float show = 1;
@@ -57,7 +58,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         sManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         timeText = (TextView) findViewById(R.id.timeText);
@@ -69,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         wallImage[1] = (ImageView) findViewById(R.id.wall1);
         wallImage[2] = (ImageView) findViewById(R.id.wall2);
         wallImage[3] = (ImageView) findViewById(R.id.wall3);
+        /*
         wallImage[4] = (ImageView) findViewById(R.id.wall4);
         wallImage[5] = (ImageView) findViewById(R.id.wall5);
         wallImage[6] = (ImageView) findViewById(R.id.wall6);
@@ -98,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         wallImage[30] = (ImageView) findViewById(R.id.wall30);
         wallImage[31] = (ImageView) findViewById(R.id.wall31);
         wallImage[32] = (ImageView) findViewById(R.id.wall32);
-
+*/
 
 
 
