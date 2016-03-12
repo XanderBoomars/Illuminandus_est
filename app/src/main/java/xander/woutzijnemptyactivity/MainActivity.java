@@ -94,7 +94,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         ballImage = (ImageView) findViewById(R.id.ball);
         playingBall = new Ball(ballImage);
 
-
         //hide top bar
         getSupportActionBar().hide();
 
