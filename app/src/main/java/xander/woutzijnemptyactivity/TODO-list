@@ -1,0 +1,14 @@
+Nog te doen:
+    -Aantal muren moet worden uitgelezen uit xml
+    -ImageViews van muren moet via een array worden gevonden (findViewById)
+    -Aantal powerUps moet worden uitgelezen uit xml
+    -ImageViews van powerUps moet via een array worden gevonden (findViewById)
+    -powerUp type moet worden uitgelezen uit xml file
+    -probleem oplossen waar een bal stil komt te liggen doordat twee muren samen komen op een hoek
+
+
+
+Gedaan maar moet worden gecheckt:
+
+
+
