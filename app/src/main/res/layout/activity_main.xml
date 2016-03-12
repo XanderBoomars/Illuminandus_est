@@ -472,6 +472,28 @@
         android:gravity="center"
         />
 
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:id="@+id/power_up_counter_image"
+        android:src="@drawable/power_up_combi"
+        android:layout_marginTop="280dp"
+        android:layout_marginLeft="430dp"/>
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="0/3"
+        android:id="@+id/powerUpCounter"
+        android:textSize="20sp"
+        android:layout_marginTop="280dp"
+        android:layout_marginLeft="430dp"
+        android:gravity="center"
+
+        />
+
 
 
 </RelativeLayout>

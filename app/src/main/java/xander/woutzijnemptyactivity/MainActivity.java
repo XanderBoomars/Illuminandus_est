@@ -45,10 +45,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     int timeSeconds;
     int timeMillis;
     TextView timeText;
+    TextView powerUpsTouched;
 
     int visibleThreshold=10000;
     int invert=1;
     int pickup_range=500;
+    int amountPowerUpsTouched=0;
 
 
     @Override
@@ -59,6 +61,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         sManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         timeText = (TextView) findViewById(R.id.timeText);
+        powerUpsTouched = (TextView) findViewById(R.id.powerUpCounter);
+
 
         //wall initializing
         wallImage[0] = (ImageView) findViewById(R.id.wall0);
@@ -261,7 +265,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         if (wall.getBottomRightX() >= ball.getBottomLeftX() && wall.getBottomRightX() <= ball.getBottomRightX()) {      //is the x position of the ball between those of the two sides of the wall
             if (wall.getBottomRightY() >= ball.getTopLeftY() && wall.getBottomRightY() <= ball.getBottomLeftY()) {      //is the y position of the ball between those of the two sides of the wall
                 limitMovement(ball, wall);
-                return;
             }
         }
 
@@ -305,7 +308,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         if (ball.getBottomRightX() >= powerUp.getBottomLeftX() && ball.getBottomRightX() <= powerUp.getBottomRightX()) {//is the x position of the ball between those of the two sides of the power up
             if (ball.getBottomRightY() >= powerUp.getTopLeftY() && ball.getBottomRightY() <= powerUp.getBottomLeftY()) {//is the y position of the ball between those of the two sides of the power up
                 hitPowerUp(powerUp);
-                return;
             }
         }
     }
@@ -319,21 +321,28 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         It changes the opacity of the powerUp
      */
     public void hitPowerUp(PowerUp powerUp){
-        if(powerUp.getType()==1 && powerUp.getHittable()==true){
+        if(powerUp.getHittable()) {
+            amountPowerUpsTouched = amountPowerUpsTouched + 1;
+            powerUpsTouched.setText(amountPowerUpsTouched + "/" + powerUpCount);
+        }
+
+        if(powerUp.getType()==1 && powerUp.getHittable()){
             pinkPowerUp(powerUp);
         }
 
-        if(powerUp.getType()==2 && powerUp.getHittable()==true){
+        if(powerUp.getType()==2 && powerUp.getHittable()){
             greenPowerUp(powerUp);
         }
 
-        if(powerUp.getType()==3 && powerUp.getHittable()==true){
+        if (powerUp.getType()==3 && powerUp.getHittable()){
             redPowerUp(powerUp);
         }
 
-        if(powerUp.getType()==4 && powerUp.getHittable()==true){
+        if(powerUp.getType()==4 && powerUp.getHittable()){
             bluePowerUp(powerUp);
         }
+
+
     }
 
     public void pinkPowerUp(PowerUp powerUp){
@@ -417,12 +426,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
             if (stepsTakenX < maxMovementX) {
                 stepsTakenX = stepsTakenX + 1;
-                if (x > 0 && allowedMovement[3] == true) {//right
+                if (x > 0 && allowedMovement[3]) {//right
                     playingBall.setCenterX(playingBall.getCenterX() - 1);
                     playingBall.setCorners();
                     a = a - 1;
                 }
-                if (x < 0 && allowedMovement[2] == true) {//left
+                if (x < 0 && allowedMovement[2]) {//left
                     playingBall.setCenterX(playingBall.getCenterX() + 1);
                     playingBall.setCorners();
                     a = a + 1;
@@ -431,12 +440,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
             if (stepsTakenY < maxMovenentY) {
                 stepsTakenY = stepsTakenY + 1;
-                if (y > 0 && allowedMovement[1] == true) {//down
+                if (y > 0 && allowedMovement[1]) {//down
                     playingBall.setCenterY(playingBall.getCenterY() - 1);
                     playingBall.setCorners();
                     b = b - 1;
                 }
-                if (y < 0 && allowedMovement[0] == true) {//up
+                if (y < 0 && allowedMovement[0]) {//up
                     playingBall.setCenterY(playingBall.getCenterY() + 1);
                     playingBall.setCorners();
                     b = b + 1;
@@ -484,6 +493,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         playingBall.setHeight();
         playingBall.setCenter();
         playingBall.setCorners();
+
+        powerUpsTouched.setText(amountPowerUpsTouched+"/"+powerUpCount);
         started = true;
     }
 
