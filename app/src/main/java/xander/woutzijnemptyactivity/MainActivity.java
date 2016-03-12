@@ -31,9 +31,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     int powerUpCount=3;
 
     //wall storage info
-    Wall mazeWall[] = new Wall[10];
-    ImageView wallImage[] = new ImageView[10];
-    int wallCount = 10;
+    Wall mazeWall[] = new Wall[33];
+    ImageView wallImage[] = new ImageView[33];
+    int wallCount = 33;
 
     //opacity settings
     float show = 1;
@@ -71,6 +71,33 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         wallImage[7] = (ImageView) findViewById(R.id.wall7);
         wallImage[8] = (ImageView) findViewById(R.id.wall8);
         wallImage[9] = (ImageView) findViewById(R.id.wall9);
+        wallImage[10] = (ImageView) findViewById(R.id.wall10);
+        wallImage[11] = (ImageView) findViewById(R.id.wall11);
+        wallImage[12] = (ImageView) findViewById(R.id.wall12);
+        wallImage[13] = (ImageView) findViewById(R.id.wall13);
+        wallImage[14] = (ImageView) findViewById(R.id.wall14);
+        wallImage[15] = (ImageView) findViewById(R.id.wall15);
+        wallImage[16] = (ImageView) findViewById(R.id.wall16);
+        wallImage[17] = (ImageView) findViewById(R.id.wall17);
+        wallImage[18] = (ImageView) findViewById(R.id.wall18);
+        wallImage[19] = (ImageView) findViewById(R.id.wall19);
+        wallImage[20] = (ImageView) findViewById(R.id.wall20);
+        wallImage[21] = (ImageView) findViewById(R.id.wall21);
+        wallImage[22] = (ImageView) findViewById(R.id.wall22);
+        wallImage[23] = (ImageView) findViewById(R.id.wall23);
+        wallImage[24] = (ImageView) findViewById(R.id.wall24);
+        wallImage[25] = (ImageView) findViewById(R.id.wall25);
+        wallImage[26] = (ImageView) findViewById(R.id.wall26);
+        wallImage[27] = (ImageView) findViewById(R.id.wall27);
+        wallImage[28] = (ImageView) findViewById(R.id.wall28);
+        wallImage[29] = (ImageView) findViewById(R.id.wall29);
+        wallImage[30] = (ImageView) findViewById(R.id.wall30);
+        wallImage[31] = (ImageView) findViewById(R.id.wall31);
+        wallImage[32] = (ImageView) findViewById(R.id.wall32);
+
+
+
+
 
         for (int i = 0; i < wallCount; i++) {
             mazeWall[i] = new Wall(wallImage[i]);

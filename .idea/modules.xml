@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/WOUTZIJNEMPTYACTIVITY.iml" filepath="$PROJECT_DIR$/WOUTZIJNEMPTYACTIVITY.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Illuminandus_est.iml" filepath="$PROJECT_DIR$/Illuminandus_est.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
