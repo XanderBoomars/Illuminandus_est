@@ -5,6 +5,11 @@ Nog te doen:
     -ImageViews van powerUps moet via een array worden gevonden (findViewById)
     -powerUp type moet worden uitgelezen uit xml file
     -probleem oplossen waar een bal stil komt te liggen doordat twee muren samen komen op een hoek
+    -par tijd displayen in level
+    -level nummer displayen in spel
+
+    ---Misschien implementeren---
+    -tijd rood maken als je boven de par tijd zit
 
 
 
