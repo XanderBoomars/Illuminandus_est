@@ -72,7 +72,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         wallImage[8] = (ImageView) findViewById(R.id.wall8);
         wallImage[9] = (ImageView) findViewById(R.id.wall9);
 
-
         for (int i = 0; i < wallCount; i++) {
             mazeWall[i] = new Wall(wallImage[i]);
         }
