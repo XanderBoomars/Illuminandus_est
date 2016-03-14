@@ -32,9 +32,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     int powerUpCount=3;
 
     //wall storage info
-    Wall mazeWall[] = new Wall[4];
-    ImageView wallImage[] = new ImageView[4];
-    int wallCount = 4;
+    Wall mazeWall[] = new Wall[20];
+    ImageView wallImage[] = new ImageView[20];
+    int wallCount = 20;
 
     //opacity settings
     float show = 1;
@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     TextView timeText;
     TextView powerUpsTouched;
     TextView parTimeText;
+    TextView levelText;
 
     int visibleThreshold=10000;
     int invert=1;
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     int parTime = 45000;
     int parTimeMinutes;
     int parTimeSeconds;
+    int levelNumber=1;
 
 
     @Override
@@ -71,14 +73,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         timeText = (TextView) findViewById(R.id.timeText);
         parTimeText = (TextView) findViewById(R.id.ParText);
         powerUpsTouched = (TextView) findViewById(R.id.powerUpCounter);
+        levelText = (TextView) findViewById(R.id.LevelText);
 
 
         //wall initializing
-        wallImage[0] = (ImageView) findViewById(R.id.wall0);
-        wallImage[1] = (ImageView) findViewById(R.id.wall1);
-        wallImage[2] = (ImageView) findViewById(R.id.wall2);
-        wallImage[3] = (ImageView) findViewById(R.id.wall3);
-        /*
+        wallImage[0] = (ImageView) findViewById(R.id.leftBorderWall);
+        wallImage[1] = (ImageView) findViewById(R.id.rightBorderWall);
+        wallImage[2] = (ImageView) findViewById(R.id.bottomBorderWall);
+        wallImage[3] = (ImageView) findViewById(R.id.topBorderWall);
+
         wallImage[4] = (ImageView) findViewById(R.id.wall4);
         wallImage[5] = (ImageView) findViewById(R.id.wall5);
         wallImage[6] = (ImageView) findViewById(R.id.wall6);
@@ -95,6 +98,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         wallImage[17] = (ImageView) findViewById(R.id.wall17);
         wallImage[18] = (ImageView) findViewById(R.id.wall18);
         wallImage[19] = (ImageView) findViewById(R.id.wall19);
+        /*
         wallImage[20] = (ImageView) findViewById(R.id.wall20);
         wallImage[21] = (ImageView) findViewById(R.id.wall21);
         wallImage[22] = (ImageView) findViewById(R.id.wall22);
@@ -140,6 +144,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         parTimeMinutes=(parTime/(1000*60))%60;
         parTimeSeconds=((parTime-(parTimeMinutes*60*1000))/1000)%60;
         parTimeText.setText("Par time: "+Integer.toString(parTimeMinutes)+":"+Integer.toString(parTimeSeconds));
+
+        levelText.setText("Level "+Integer.toString(levelNumber));
 
         timeStart=(int)System.currentTimeMillis();
     }
@@ -550,16 +556,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 mazeWall[i].setOpacity(hide);
             }
         }
-
-
-
-
-
-
-
-
-
-
 
         timeMinutes=(time/(1000*60))%60;
         timeSeconds=((time-(timeMinutes*60*1000))/1000)%60;
