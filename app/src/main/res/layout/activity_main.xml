@@ -10,6 +10,13 @@
     tools:context="xander.woutzijnemptyactivity.MainActivity"
     >
 
+    <TextView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:id="@+id/middleSquare"/>
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,7 +29,8 @@
         android:src="@drawable/wood_background"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop"
+        />
 
 
 <!-- Power ups -->
@@ -64,23 +72,12 @@
 
 
 
-
-    <TextView
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:id="@+id/middleSquare"/>
-
-
-
     <ImageView
         android:layout_width="10dp"
         android:layout_height="250dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:id="@+id/leftBorderWall"
-        android:background="#000000"
         android:alpha="1"
         android:src="@drawable/wall_image_vertical"
         android:layout_toLeftOf="@id/middleSquare"
@@ -93,7 +90,6 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:id="@+id/rightBorderWall"
-        android:background="#000000"
         android:alpha="1"
         android:src="@drawable/wall_image_vertical"
         android:layout_toRightOf="@id/middleSquare"
@@ -106,7 +102,6 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:id="@+id/bottomBorderWall"
-        android:background="#000000"
         android:alpha="1"
         android:src="@drawable/wall_image_horizontal"
         android:layout_centerHorizontal="true"
@@ -119,7 +114,6 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:id="@+id/topBorderWall"
-        android:background="#000000"
         android:alpha="1"
         android:src="@drawable/wall_image_horizontal"
         android:layout_centerHorizontal="true"
@@ -151,7 +145,6 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:id="@+id/wall4"
-        android:background="#000000"
         android:alpha="1"
         android:src="@drawable/wall_image_vertical"
         android:layout_toLeftOf="@id/middleSquare"
@@ -167,7 +160,6 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:id="@+id/wall5"
-        android:background="#000000"
         android:alpha="1"
         android:src="@drawable/wall_image_horizontal"
         android:layout_toLeftOf="@id/middleSquare"
@@ -181,7 +173,6 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:id="@+id/wall6"
-        android:background="#000000"
         android:alpha="1"
         android:src="@drawable/wall_image_horizontal"
         android:layout_toLeftOf="@id/middleSquare"
@@ -196,7 +187,6 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:id="@+id/wall7"
-        android:background="#000000"
         android:alpha="1"
         android:src="@drawable/wall_image_vertical"
         android:layout_toLeftOf="@id/middleSquare"
@@ -210,7 +200,6 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:id="@+id/wall8"
-        android:background="#000000"
         android:alpha="1"
         android:src="@drawable/wall_image_horizontal"
         android:layout_toLeftOf="@id/middleSquare"
@@ -224,7 +213,6 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:id="@+id/wall9"
-        android:background="#000000"
         android:alpha="1"
         android:src="@drawable/wall_image_vertical"
         android:layout_toLeftOf="@id/middleSquare"
@@ -238,7 +226,6 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:id="@+id/wall10"
-        android:background="#000000"
         android:alpha="1"
         android:src="@drawable/wall_image_horizontal"
         android:layout_toLeftOf="@id/middleSquare"
@@ -252,7 +239,6 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:id="@+id/wall11"
-        android:background="#000000"
         android:alpha="1"
         android:src="@drawable/wall_image_vertical"
         android:layout_toLeftOf="@id/middleSquare"
@@ -266,7 +252,6 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:id="@+id/wall12"
-        android:background="#000000"
         android:alpha="1"
         android:src="@drawable/wall_image_horizontal"
         android:layout_toLeftOf="@id/middleSquare"
@@ -280,7 +265,6 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:id="@+id/wall13"
-        android:background="#000000"
         android:alpha="1"
         android:src="@drawable/wall_image_vertical"
         android:layout_toLeftOf="@id/middleSquare"
@@ -294,7 +278,6 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:id="@+id/wall14"
-        android:background="#000000"
         android:alpha="1"
         android:src="@drawable/wall_image_horizontal"
         android:layout_toLeftOf="@id/middleSquare"
@@ -308,7 +291,6 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:id="@+id/wall15"
-        android:background="#000000"
         android:alpha="1"
         android:src="@drawable/wall_image_vertical"
         android:layout_toLeftOf="@id/middleSquare"
@@ -322,7 +304,6 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:id="@+id/wall16"
-        android:background="#000000"
         android:alpha="1"
         android:src="@drawable/wall_image_horizontal"
         android:layout_toLeftOf="@id/middleSquare"
@@ -336,7 +317,6 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:id="@+id/wall17"
-        android:background="#000000"
         android:alpha="1"
         android:src="@drawable/wall_image_horizontal"
         android:layout_toLeftOf="@id/middleSquare"
@@ -350,7 +330,6 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:id="@+id/wall18"
-        android:background="#000000"
         android:alpha="1"
         android:src="@drawable/wall_image_vertical"
         android:layout_toLeftOf="@id/middleSquare"
@@ -364,7 +343,6 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:id="@+id/wall19"
-        android:background="#000000"
         android:alpha="1"
         android:src="@drawable/wall_image_vertical"
         android:layout_toLeftOf="@id/middleSquare"
@@ -378,7 +356,6 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:id="@+id/wall20"
-        android:background="#000000"
         android:alpha="1"
         android:src="@drawable/wall_image_horizontal"
         android:layout_toLeftOf="@id/middleSquare"
@@ -392,7 +369,6 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:id="@+id/wall21"
-        android:background="#000000"
         android:alpha="1"
         android:src="@drawable/wall_image_horizontal"
         android:layout_toLeftOf="@id/middleSquare"
@@ -406,7 +382,6 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:id="@+id/wall22"
-        android:background="#000000"
         android:alpha="1"
         android:src="@drawable/wall_image_vertical"
         android:layout_toLeftOf="@id/middleSquare"
@@ -420,7 +395,6 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:id="@+id/wall23"
-        android:background="#000000"
         android:alpha="1"
         android:src="@drawable/wall_image_horizontal"
         android:layout_toLeftOf="@id/middleSquare"
@@ -434,7 +408,6 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:id="@+id/wall24"
-        android:background="#000000"
         android:alpha="1"
         android:src="@drawable/wall_image_horizontal"
         android:layout_toLeftOf="@id/middleSquare"
@@ -448,7 +421,6 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:id="@+id/wall25"
-        android:background="#000000"
         android:alpha="1"
         android:src="@drawable/wall_image_vertical"
         android:layout_toLeftOf="@id/middleSquare"
@@ -462,7 +434,6 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:id="@+id/wall26"
-        android:background="#000000"
         android:alpha="1"
         android:src="@drawable/wall_image_horizontal"
         android:layout_toLeftOf="@id/middleSquare"
@@ -476,7 +447,6 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:id="@+id/wall27"
-        android:background="#000000"
         android:alpha="1"
         android:src="@drawable/wall_image_vertical"
         android:layout_toLeftOf="@id/middleSquare"
@@ -490,7 +460,6 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:id="@+id/wall28"
-        android:background="#000000"
         android:alpha="1"
         android:src="@drawable/wall_image_vertical"
         android:layout_toLeftOf="@id/middleSquare"
@@ -504,7 +473,6 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:id="@+id/wall29"
-        android:background="#000000"
         android:alpha="1"
         android:src="@drawable/wall_image_vertical"
         android:layout_toLeftOf="@id/middleSquare"
@@ -518,7 +486,6 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:id="@+id/wall30"
-        android:background="#000000"
         android:alpha="1"
         android:src="@drawable/wall_image_horizontal"
         android:layout_toLeftOf="@id/middleSquare"
@@ -532,7 +499,6 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:id="@+id/wall31"
-        android:background="#000000"
         android:alpha="1"
         android:src="@drawable/wall_image_vertical"
         android:layout_toLeftOf="@id/middleSquare"
@@ -546,7 +512,6 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:id="@+id/wall32"
-        android:background="#000000"
         android:alpha="1"
         android:src="@drawable/wall_image_vertical"
         android:layout_toLeftOf="@id/middleSquare"
@@ -554,23 +519,31 @@
         android:layout_marginBottom="-10dp"
         android:layout_marginRight="-230dp"/>
 
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="@dimen/wall_width"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:id="@+id/wall33"
+        android:alpha="1"
+        android:src="@drawable/wall_image_horizontal"
+        android:layout_toLeftOf="@id/middleSquare"
+        android:layout_above="@id/middleSquare"
+        android:layout_marginBottom="-110dp"
+        android:layout_marginRight="-275dp"/>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_height="@dimen/wall_width"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:id="@+id/wall34"
+        android:alpha="1"
+        android:src="@drawable/wall_image_horizontal"
+        android:layout_toLeftOf="@id/middleSquare"
+        android:layout_above="@id/middleSquare"
+        android:layout_marginBottom="-110dp"
+        android:layout_marginRight="-50dp"/>
 
 
 
@@ -586,9 +559,7 @@
         android:layout_marginTop="135dp"
         android:layout_marginRight="120dp"
         android:textSize="20sp"
-        android:gravity="center"
-        />
-
+        android:gravity="center" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -600,8 +571,7 @@
         android:layout_marginTop="135dp"
         android:layout_marginRight="30dp"
         android:textSize="20sp"
-        android:gravity="center"
-        />
+        android:gravity="center" />
 
     <ImageView
         android:layout_width="20dp"
@@ -625,9 +595,7 @@
         android:layout_toRightOf="@id/middleSquare"
         android:layout_marginTop="135dp"
         android:layout_marginLeft="60dp"
-        android:gravity="center"
-
-        />
+        android:gravity="center" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -639,9 +607,8 @@
         android:layout_toRightOf="@id/middleSquare"
         android:layout_marginTop="135dp"
         android:layout_marginLeft="120dp"
-        android:gravity="center"
+        android:gravity="center" />
 
-        />
 
 
 

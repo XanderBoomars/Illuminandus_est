@@ -32,9 +32,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     int powerUpCount=3;
 
     //wall storage info
-    Wall mazeWall[] = new Wall[20];
-    ImageView wallImage[] = new ImageView[20];
-    int wallCount = 20;
+    Wall mazeWall[] = new Wall[35];
+    ImageView wallImage[] = new ImageView[35];
+    int wallCount = 35;
 
     //opacity settings
     float show = 1;
@@ -98,7 +98,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         wallImage[17] = (ImageView) findViewById(R.id.wall17);
         wallImage[18] = (ImageView) findViewById(R.id.wall18);
         wallImage[19] = (ImageView) findViewById(R.id.wall19);
-        /*
         wallImage[20] = (ImageView) findViewById(R.id.wall20);
         wallImage[21] = (ImageView) findViewById(R.id.wall21);
         wallImage[22] = (ImageView) findViewById(R.id.wall22);
@@ -112,7 +111,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         wallImage[30] = (ImageView) findViewById(R.id.wall30);
         wallImage[31] = (ImageView) findViewById(R.id.wall31);
         wallImage[32] = (ImageView) findViewById(R.id.wall32);
-*/
+        wallImage[33] = (ImageView) findViewById(R.id.wall33);
+        wallImage[34] = (ImageView) findViewById(R.id.wall34);
+
 
 
 
