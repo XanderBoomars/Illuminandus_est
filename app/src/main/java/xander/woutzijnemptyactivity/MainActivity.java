@@ -47,11 +47,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     int timeMillis;
     TextView timeText;
     TextView powerUpsTouched;
+    TextView parTimeText;
 
     int visibleThreshold=10000;
     int invert=1;
     int pickup_range=500;
     int amountPowerUpsTouched=0;
+    int parTime = 45000;
+    int parTimeMinutes;
+    int parTimeSeconds;
 
 
     @Override
@@ -65,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         sManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         timeText = (TextView) findViewById(R.id.timeText);
+        parTimeText = (TextView) findViewById(R.id.ParText);
         powerUpsTouched = (TextView) findViewById(R.id.powerUpCounter);
 
 
@@ -131,6 +136,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         //hide top bar
         getSupportActionBar().hide();
+
+        parTimeMinutes=(parTime/(1000*60))%60;
+        parTimeSeconds=((parTime-(parTimeMinutes*60*1000))/1000)%60;
+        parTimeText.setText("Par time: "+Integer.toString(parTimeMinutes)+":"+Integer.toString(parTimeSeconds));
 
         timeStart=(int)System.currentTimeMillis();
     }
@@ -550,6 +559,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
 
 
+
+
         timeMinutes=(time/(1000*60))%60;
         timeSeconds=((time-(timeMinutes*60*1000))/1000)%60;
 
@@ -568,6 +579,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             else{
                 timeText.setText(Integer.toString(timeMinutes)+":"+Integer.toString(timeSeconds));
             }
+        }
+
+        if(time>(parTime+1000)){
+            timeText.setTextColor(getResources().getColor(R.color.red));
         }
 
         move(x, y);

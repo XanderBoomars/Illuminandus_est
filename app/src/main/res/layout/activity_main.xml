@@ -77,10 +77,8 @@
         android:scaleType="fitCenter"
         android:id="@+id/ball"
         android:src="@drawable/ball_128"
-        android:layout_toLeftOf="@id/middleSquare"
-        android:layout_above="@id/middleSquare"
-        android:layout_marginRight="225dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="100dp"
        />
 
     <ImageView
@@ -504,7 +502,18 @@
 
 
 
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Par: 00:00"
+        android:id="@+id/ParText"
+        android:layout_below="@id/middleSquare"
+        android:layout_toLeftOf="@id/middleSquare"
+        android:layout_marginTop="135dp"
+        android:layout_marginRight="100dp"
+        android:textSize="20sp"
+        android:gravity="center"
+        />
 
 
     <TextView
