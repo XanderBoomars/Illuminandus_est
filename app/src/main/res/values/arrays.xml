@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="parTime">
+        <item>50000</item>
+        <item>50000</item>
+        <item>50000</item>
+        <item>50000</item>
+        <item>50000</item>
+        <item>50000</item>
+        <item>50000</item>
+        <item>50000</item>
+    </integer-array>
+
+    <integer-array name="powerUpCount">
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+
+    </integer-array>
+
+    <integer-array name="wallCount">
+        <item>35</item>
+        <item>35</item>
+        <item>35</item>
+        <item>35</item>
+        <item>35</item>
+        <item>35</item>
+        <item>35</item>
+        <item>35</item>
+
+    </integer-array>
+
+    <array name="wallName">
+        <item>leftBorderWall</item>
+        <item>rightBorderWall</item>
+        <item>bottomBorderWall</item>
+        <item>topBorderWall</item>
+        <item>wall4</item>
+        <item>wall5</item>
+        <item>wall6</item>
+        <item>wall7</item>
+        <item>wall8</item>
+        <item>wall9</item>
+        <item>wall10</item>
+        <item>wall11</item>
+        <item>wall12</item>
+        <item>wall13</item>
+        <item>wall14</item>
+        <item>wall15</item>
+        <item>wall16</item>
+        <item>wall17</item>
+        <item>wall18</item>
+        <item>wall19</item>
+        <item>wall20</item>
+        <item>wall21</item>
+        <item>wall22</item>
+        <item>wall23</item>
+        <item>wall24</item>
+        <item>wall25</item>
+        <item>wall26</item>
+        <item>wall27</item>
+        <item>wall28</item>
+        <item>wall29</item>
+        <item>wall30</item>
+        <item>wall31</item>
+        <item>wall32</item>
+        <item>wall33</item>
+        <item>wall34</item>
+        <item>wall35</item>
+        <item>wall36</item>
+        <item>wall37</item>
+        <item>wall38</item>
+        <item>wall39</item>
+        <item>wall40</item>
+        <item>wall41</item>
+        <item>wall42</item>
+        <item>wall43</item>
+        <item>wall44</item>
+        <item>wall45</item>
+        <item>wall46</item>
+
+
+
+
+
+
+
+
+    </array>
+
+
+
+
+</resources>

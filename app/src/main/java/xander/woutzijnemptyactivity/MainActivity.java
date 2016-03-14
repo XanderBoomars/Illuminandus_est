@@ -1,16 +1,19 @@
 package xander.woutzijnemptyactivity;
 
+import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
     private SensorManager sManager;
@@ -27,14 +30,13 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     boolean allowedMovement[] = {true, true, true, true};
 
     //power up storage info
-    PowerUp powerUps[] = new PowerUp[3];
-    ImageView powerUpImage[] = new ImageView[3];
-    int powerUpCount=3;
+    PowerUp powerUps[];
+    ImageView powerUpImage[];
+    int powerUpCounter[]=new int[8];
 
     //wall storage info
-    Wall mazeWall[] = new Wall[35];
-    ImageView wallImage[] = new ImageView[35];
-    int wallCount = 35;
+    Wall mazeWall[];
+    int wallCounter[]= new int[8];
 
     //opacity settings
     float show = 1;
@@ -44,7 +46,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     int time;
     int timeMinutes;
     int timeSeconds;
-    int timeMillis;
     TextView timeText;
     TextView powerUpsTouched;
     TextView parTimeText;
@@ -54,16 +55,16 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     int invert=1;
     int pickup_range=500;
     int amountPowerUpsTouched=0;
-    int parTime = 45000;
+    int parTime[]= new int[8];
     int parTimeMinutes;
     int parTimeSeconds;
-    int levelNumber=1;
+    int levelNumber=0;  //level 1 equals levelNumber 0 etc
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.level_1);
 
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -76,54 +77,37 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         levelText = (TextView) findViewById(R.id.LevelText);
 
 
+
         //wall initializing
-        wallImage[0] = (ImageView) findViewById(R.id.leftBorderWall);
-        wallImage[1] = (ImageView) findViewById(R.id.rightBorderWall);
-        wallImage[2] = (ImageView) findViewById(R.id.bottomBorderWall);
-        wallImage[3] = (ImageView) findViewById(R.id.topBorderWall);
+        wallCounter = getResources().getIntArray(R.array.wallCount);
+        String wallName[] = getResources().getStringArray(R.array.wallName);
 
-        wallImage[4] = (ImageView) findViewById(R.id.wall4);
-        wallImage[5] = (ImageView) findViewById(R.id.wall5);
-        wallImage[6] = (ImageView) findViewById(R.id.wall6);
-        wallImage[7] = (ImageView) findViewById(R.id.wall7);
-        wallImage[8] = (ImageView) findViewById(R.id.wall8);
-        wallImage[9] = (ImageView) findViewById(R.id.wall9);
-        wallImage[10] = (ImageView) findViewById(R.id.wall10);
-        wallImage[11] = (ImageView) findViewById(R.id.wall11);
-        wallImage[12] = (ImageView) findViewById(R.id.wall12);
-        wallImage[13] = (ImageView) findViewById(R.id.wall13);
-        wallImage[14] = (ImageView) findViewById(R.id.wall14);
-        wallImage[15] = (ImageView) findViewById(R.id.wall15);
-        wallImage[16] = (ImageView) findViewById(R.id.wall16);
-        wallImage[17] = (ImageView) findViewById(R.id.wall17);
-        wallImage[18] = (ImageView) findViewById(R.id.wall18);
-        wallImage[19] = (ImageView) findViewById(R.id.wall19);
-        wallImage[20] = (ImageView) findViewById(R.id.wall20);
-        wallImage[21] = (ImageView) findViewById(R.id.wall21);
-        wallImage[22] = (ImageView) findViewById(R.id.wall22);
-        wallImage[23] = (ImageView) findViewById(R.id.wall23);
-        wallImage[24] = (ImageView) findViewById(R.id.wall24);
-        wallImage[25] = (ImageView) findViewById(R.id.wall25);
-        wallImage[26] = (ImageView) findViewById(R.id.wall26);
-        wallImage[27] = (ImageView) findViewById(R.id.wall27);
-        wallImage[28] = (ImageView) findViewById(R.id.wall28);
-        wallImage[29] = (ImageView) findViewById(R.id.wall29);
-        wallImage[30] = (ImageView) findViewById(R.id.wall30);
-        wallImage[31] = (ImageView) findViewById(R.id.wall31);
-        wallImage[32] = (ImageView) findViewById(R.id.wall32);
-        wallImage[33] = (ImageView) findViewById(R.id.wall33);
-        wallImage[34] = (ImageView) findViewById(R.id.wall34);
+        int wallId;
+
+        ImageView wallImage[] = new ImageView[wallCounter[levelNumber]];
+
+        for (int i = 0; i < wallCounter[levelNumber]; i++) {
+            wallId = getResources().getIdentifier(wallName[i], "id", getPackageName());
+            wallImage[i]=(ImageView) findViewById(wallId);
+        }
 
 
-
-
-
-        for (int i = 0; i < wallCount; i++) {
+        mazeWall = new Wall[wallCounter[levelNumber]];
+        for (int i = 0; i < wallCounter[levelNumber]; i++) {
             mazeWall[i] = new Wall(wallImage[i]);
         }
-        for (int i = 4; i < wallCount; i++) {
+
+        for (int i = 4; i < wallCounter[levelNumber]; i++) {
             mazeWall[i].setOpacity(hide);
         }
+
+
+
+
+
+        powerUpCounter=getResources().getIntArray(R.array.powerUpCount);
+        powerUps = new PowerUp[powerUpCounter[levelNumber]];
+        powerUpImage = new ImageView[powerUpCounter[levelNumber]];
 
         //power up initializing
         powerUpImage[0] = (ImageView) findViewById(R.id.power_up_0);
@@ -142,11 +126,13 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         //hide top bar
         getSupportActionBar().hide();
 
-        parTimeMinutes=(parTime/(1000*60))%60;
-        parTimeSeconds=((parTime-(parTimeMinutes*60*1000))/1000)%60;
+        parTime=getResources().getIntArray(R.array.parTime);
+
+        parTimeMinutes=(parTime[levelNumber]/(1000*60))%60;
+        parTimeSeconds=((parTime[levelNumber]-(parTimeMinutes*60*1000))/1000)%60;
         parTimeText.setText("Par time: "+Integer.toString(parTimeMinutes)+":"+Integer.toString(parTimeSeconds));
 
-        levelText.setText("Level "+Integer.toString(levelNumber));
+        levelText.setText("Level "+Integer.toString(levelNumber+1));
 
         timeStart=(int)System.currentTimeMillis();
     }
@@ -344,7 +330,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     public void hitPowerUp(PowerUp powerUp){
         if(powerUp.getHittable()) {
             amountPowerUpsTouched = amountPowerUpsTouched + 1;
-            powerUpsTouched.setText(amountPowerUpsTouched + "/" + powerUpCount);
+            powerUpsTouched.setText(Integer.toString(amountPowerUpsTouched) + "/" + Integer.toString(powerUpCounter[levelNumber]));
         }
 
         if(powerUp.getType()==1 && powerUp.getHittable()){
@@ -367,7 +353,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     }
 
     public void pinkPowerUp(PowerUp powerUp){
-        for(int i=0; i<wallCount;i++){
+        for(int i=0; i<wallCounter[levelNumber];i++){
             mazeWall[i].setOpacity(show);
             mazeWall[i].setTimeTouched((int)System.currentTimeMillis()-timeStart);
         }
@@ -389,7 +375,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     }
 
     public void bluePowerUp(PowerUp powerUp){
-        for(int i=4;i<wallCount;i++){
+        for(int i=4;i<wallCounter[levelNumber];i++){
             double deltaDsquared = Math.pow(mazeWall[i].getCenterX() - powerUp.getCenterX(), 2) + Math.pow(mazeWall[i].getCenterY() - powerUp.getCenterY(), 2);
             if(deltaDsquared < Math.pow(pickup_range, 2)){
                 mazeWall[i].setOpacity(show);
@@ -437,11 +423,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         while (maxMovementX > stepsTakenX || maxMovenentY > stepsTakenY) {
             //up 0, down 1, right 3, left 2
-            for (int i = 0; i < wallCount; i++) {
+            for (int i = 0; i < wallCounter[levelNumber]; i++) {
                 intersectWall(playingBall, mazeWall[i]);
             }
 
-            for(int i=0; i< powerUpCount; i++){
+            for(int i=0; i< powerUpCounter[levelNumber]; i++){
                 intersectPowerUp(playingBall, powerUps[i]);
             }
 
@@ -498,13 +484,13 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
      */
 
     public void start() {
-        for(int i=0; i< powerUpCount; i++){
+        for(int i=0; i< powerUpCounter[levelNumber]; i++){
             powerUps[i].setWidth();
             powerUps[i].setHeight();
             powerUps[i].setCenter();
             powerUps[i].setCorners();
         }
-        for (int i = 0; i < wallCount; i++) {
+        for (int i = 0; i < wallCounter[levelNumber]; i++) {
             mazeWall[i].setWidth();
             mazeWall[i].setHeight();
             mazeWall[i].setCenter();
@@ -515,12 +501,13 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         playingBall.setCenter();
         playingBall.setCorners();
 
-        powerUpsTouched.setText(amountPowerUpsTouched+"/"+powerUpCount);
+        powerUpsTouched.setText(Integer.toString(amountPowerUpsTouched)+"/"+Integer.toString(powerUpCounter[levelNumber]));
         started = true;
     }
 
     @Override
     public void onSensorChanged(SensorEvent event) {
+
         if (started == false) {
             start();
         }
@@ -531,8 +518,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
 
         //adjusts and then saves the angle of phone in the x and y direction.
-        x = Math.round(event.values[1]) / 3*invert;
-        y = Math.round(-event.values[2]) / 3*invert;
+        x = Math.round(event.values[1]) / 3 * invert;
+        y = Math.round(-event.values[2]) / 3 * invert;
 
         //limits the speed
         if (x > 15) {
@@ -549,39 +536,38 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
 
 
-
-
-        time=(int)(System.currentTimeMillis()-timeStart);
-        for(int i=4; i<wallCount;i++){
-            if(time-mazeWall[i].getTimeTouched()>visibleThreshold){
+        time = (int) (System.currentTimeMillis() - timeStart);
+        for (int i = 4; i < wallCounter[levelNumber]; i++) {
+            if (time - mazeWall[i].getTimeTouched() > visibleThreshold) {
                 mazeWall[i].setOpacity(hide);
             }
         }
 
-        timeMinutes=(time/(1000*60))%60;
-        timeSeconds=((time-(timeMinutes*60*1000))/1000)%60;
+        timeMinutes = (time / (1000 * 60)) % 60;
+        timeSeconds = ((time - (timeMinutes * 60 * 1000)) / 1000) % 60;
 
-        if(timeMinutes<10){
-            if(timeSeconds<10){
-                timeText.setText("0"+Integer.toString(timeMinutes)+":0"+Integer.toString(timeSeconds));
+        if (timeMinutes < 10) {
+            if (timeSeconds < 10) {
+                timeText.setText("0" + Integer.toString(timeMinutes) + ":0" + Integer.toString(timeSeconds));
+            } else {
+                timeText.setText("0" + Integer.toString(timeMinutes) + ":" + Integer.toString(timeSeconds));
             }
-            else{
-                timeText.setText("0"+Integer.toString(timeMinutes)+":"+Integer.toString(timeSeconds));
-            }
-        }
-        else{
-            if(timeSeconds<10){
-                timeText.setText(Integer.toString(timeMinutes)+":0"+Integer.toString(timeSeconds));
-            }
-            else{
-                timeText.setText(Integer.toString(timeMinutes)+":"+Integer.toString(timeSeconds));
+        } else {
+            if (timeSeconds < 10) {
+                timeText.setText(Integer.toString(timeMinutes) + ":0" + Integer.toString(timeSeconds));
+            } else {
+                timeText.setText(Integer.toString(timeMinutes) + ":" + Integer.toString(timeSeconds));
             }
         }
 
-        if(time>(parTime+1000)){
+        if (time > (parTime[levelNumber] + 1000)) {
             timeText.setTextColor(getResources().getColor(R.color.red));
         }
 
         move(x, y);
+
     }
+
+
+
 }
