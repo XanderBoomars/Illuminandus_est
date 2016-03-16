@@ -614,4 +614,79 @@
 
 
 
+
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/level_select_background"
+        android:alpha="1"
+        android:id="@+id/menu_background"
+        android:visibility="gone"/>
+    
+    <ImageView
+        android:layout_width="400dp"
+        android:layout_height="225dp"
+        android:src="@drawable/pause_background"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:id="@+id/menu_background_2"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:layout_width="175dp"
+        android:layout_height="175dp"
+        android:src="@drawable/play_button"
+        android:id="@+id/playButton"
+        android:scaleType="fitXY"
+        android:layout_toLeftOf="@id/middleSquare"
+        android:layout_marginRight="-5dp"
+        android:layout_centerVertical="true"
+        android:onClick="playButtonClick"
+        android:clickable="false"
+        android:visibility="gone"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="restart"
+        android:id="@+id/restartButton"
+        android:layout_toRightOf="@id/middleSquare"
+        android:layout_above="@id/middleSquare"
+        android:layout_marginLeft="70dp"
+        android:layout_marginBottom="-50dp"
+        android:clickable="false"
+        android:onClick="restartButtonClick"
+        android:visibility="gone"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="quit level"
+        android:id="@+id/quitLevelButton"
+        android:layout_toRightOf="@id/middleSquare"
+        android:layout_below="@id/middleSquare"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="10dp"
+        android:clickable="false"
+        android:onClick="quitLevelClick"
+        android:visibility="gone"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00:00/00:00"
+        android:textSize="30sp"
+        android:id="@+id/timePause"
+        android:layout_toRightOf="@id/middleSquare"
+        android:layout_above="@id/middleSquare"
+        android:layout_marginBottom="40dp"
+        android:layout_marginLeft="5dp"
+        android:visibility="gone"/>
+
+
+
+
 </RelativeLayout>

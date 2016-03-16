@@ -42,21 +42,42 @@ public class Wall extends AppCompatActivity {
 
     //This method sets the coordinates for the four corners
     public void setCorners() {
-        //top left corner
-        topLeftX=(centerX-(width/2));
-        topLeftY=(centerY-(height/2));
+        if(width>height){
+            //top left corner
+            topLeftX=(centerX-(width/2)+2);
+            topLeftY=(centerY-(height/2));
 
-        //top right corner
-        topRightX=(centerX+(width/2));
-        topRightY=(centerY-(height/2));
+            //top right corner
+            topRightX=(centerX+(width/2)-2);
+            topRightY=(centerY-(height/2));
 
-        //bottom right corner
-        bottomRightX=(centerX+(width/2));
-        bottomRightY=(centerY+(height/2));
+            //bottom right corner
+            bottomRightX=(centerX+(width/2)-2);
+            bottomRightY=(centerY+(height/2));
 
-        //bottom left corner
-        bottomLeftX=(centerX-(width/2));
-        bottomLeftY=(centerY+(height/2));
+            //bottom left corner
+            bottomLeftX=(centerX-(width/2)+2);
+            bottomLeftY=(centerY+(height/2));
+            return;
+        }
+
+        else{
+            //top left corner
+            topLeftX=(centerX-(width/2));
+            topLeftY=(centerY-(height/2)+2);
+
+            //top right corner
+            topRightX=(centerX+(width/2));
+            topRightY=(centerY-(height/2)+2);
+
+            //bottom right corner
+            bottomRightX=(centerX+(width/2));
+            bottomRightY=(centerY+(height/2)-2);
+
+            //bottom left corner
+            bottomLeftX=(centerX-(width/2)+2);
+            bottomLeftY=(centerY+(height/2)-2);
+        }
     }
 
     public float getOpacity(){

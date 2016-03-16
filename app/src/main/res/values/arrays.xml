@@ -83,15 +83,66 @@
         <item>wall44</item>
         <item>wall45</item>
         <item>wall46</item>
-
-
-
-
-
-
-
-
     </array>
+
+    <array name="powerUpName">
+        <item>power_up_0</item>
+        <item>power_up_1</item>
+        <item>power_up_2</item>
+        <item>power_up_3</item>
+        <item>power_up_4</item>
+        <item>power_up_5</item>
+        <item>power_up_6</item>
+        <item>power_up_7</item>
+    </array>
+
+    <integer-array name="powerUpTypeLevel_0">
+        <item>1</item>
+        <item>3</item>
+        <item>4</item>
+    </integer-array>
+
+    <integer-array name="powerUpTypeLevel_1">
+        <item>1</item>
+        <item>3</item>
+        <item>4</item>
+    </integer-array>
+
+    <integer-array name="powerUpTypeLevel_2">
+        <item>1</item>
+        <item>3</item>
+        <item>4</item>
+    </integer-array>
+
+    <integer-array name="powerUpTypeLevel_3">
+        <item>1</item>
+        <item>3</item>
+        <item>4</item>
+    </integer-array>
+
+    <integer-array name="powerUpTypeLevel_4">
+        <item>1</item>
+        <item>3</item>
+        <item>4</item>
+    </integer-array>
+
+    <integer-array name="powerUpTypeLevel_5">
+        <item>1</item>
+        <item>3</item>
+        <item>4</item>
+    </integer-array>
+
+    <integer-array name="powerUpTypeLevel_6">
+        <item>1</item>
+        <item>3</item>
+        <item>4</item>
+    </integer-array>
+
+    <integer-array name="powerUpTypeLevel_7">
+        <item>1</item>
+        <item>3</item>
+        <item>4</item>
+    </integer-array>
 
 
 

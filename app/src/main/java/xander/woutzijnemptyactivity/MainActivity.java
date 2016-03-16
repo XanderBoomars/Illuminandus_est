@@ -9,7 +9,10 @@ import android.hardware.SensorManager;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -31,7 +34,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     //power up storage info
     PowerUp powerUps[];
-    ImageView powerUpImage[];
     int powerUpCounter[]=new int[8];
 
     //wall storage info
@@ -58,7 +60,18 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     int parTime[]= new int[8];
     int parTimeMinutes;
     int parTimeSeconds;
+    int pausedTime=0;
+    int timeAtPause=0;
     int levelNumber=0;  //level 1 equals levelNumber 0 etc
+
+    ImageView pauseScreenBackground;
+    ImageView pauseScreenBackground2;
+    ImageView playButton;
+    TextView pauseScreenTimeText;
+    Button quitLevelButton;
+    Button restartLevelButton;
+
+
 
 
     @Override
@@ -102,21 +115,37 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
 
 
-
-
-
         powerUpCounter=getResources().getIntArray(R.array.powerUpCount);
-        powerUps = new PowerUp[powerUpCounter[levelNumber]];
-        powerUpImage = new ImageView[powerUpCounter[levelNumber]];
+        String powerUpName[] = getResources().getStringArray(R.array.powerUpName);
+
+        int powerUpId;
+
+        ImageView powerUpImage[] = new ImageView[powerUpCounter[levelNumber]];
+
+        int powerUpType[][]=new int[8][10];
+        powerUpType[0] = getResources().getIntArray(R.array.powerUpTypeLevel_0);
+        powerUpType[1] = getResources().getIntArray(R.array.powerUpTypeLevel_1);
+        powerUpType[2] = getResources().getIntArray(R.array.powerUpTypeLevel_2);
+        powerUpType[3] = getResources().getIntArray(R.array.powerUpTypeLevel_3);
+        powerUpType[4] = getResources().getIntArray(R.array.powerUpTypeLevel_4);
+        powerUpType[5] = getResources().getIntArray(R.array.powerUpTypeLevel_5);
+        powerUpType[6] = getResources().getIntArray(R.array.powerUpTypeLevel_6);
+        powerUpType[7] = getResources().getIntArray(R.array.powerUpTypeLevel_7);
+
 
         //power up initializing
-        powerUpImage[0] = (ImageView) findViewById(R.id.power_up_0);
-        powerUpImage[1] = (ImageView) findViewById(R.id.power_up_1);
-        powerUpImage[2] = (ImageView) findViewById(R.id.power_up_2);
+        for(int i=0;i<powerUpCounter[levelNumber];i++){
+            powerUpId = getResources().getIdentifier(powerUpName[i], "id", getPackageName());
+            powerUpImage[i] = (ImageView) findViewById(powerUpId);
+        }
 
-        powerUps[0] = new PowerUp(1, powerUpImage[0]);
-        powerUps[1] = new PowerUp(3, powerUpImage[1]);
-        powerUps[2] = new PowerUp(4, powerUpImage[2]);
+
+
+        powerUps = new PowerUp[powerUpCounter[levelNumber]];
+        for(int j=0; j<powerUpCounter[levelNumber];j++){
+            powerUps[j] = new PowerUp(powerUpType[levelNumber][j], powerUpImage[j]);
+        }
+
 
 
         //ball initializing
@@ -135,8 +164,40 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         levelText.setText("Level "+Integer.toString(levelNumber+1));
 
         timeStart=(int)System.currentTimeMillis();
+
+        pauseScreenBackground = (ImageView) findViewById(R.id.menu_background);
+        pauseScreenBackground2 = (ImageView) findViewById(R.id.menu_background_2);
+        playButton = (ImageView) findViewById(R.id.playButton);
+        quitLevelButton = (Button) findViewById(R.id.quitLevelButton);
+        restartLevelButton = (Button) findViewById(R.id.restartButton);
+        pauseScreenTimeText = (TextView) findViewById(R.id.timePause);
     }
 
+    public void restartButtonClick(View v){
+        recreate();
+    }
+
+    public void playButtonClick(View v){
+        pauseScreenBackground.setVisibility(View.GONE);
+        pauseScreenBackground2.setVisibility(View.GONE);
+        playButton.setVisibility(View.GONE);
+        quitLevelButton.setVisibility(View.GONE);
+        restartLevelButton.setVisibility(View.GONE);
+        pauseScreenTimeText.setVisibility(View.GONE);
+
+        playButton.setClickable(false);
+        quitLevelButton.setClickable(false);
+        restartLevelButton.setClickable(false);
+
+        pausedTime=pausedTime+((int)System.currentTimeMillis()-timeAtPause);
+    }
+
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        pauseScreen();
+        return super.onTouchEvent(event);
+    }
 
     //when this Activity starts
     @Override
@@ -172,6 +233,38 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         It changes the allowedMovement boolean
     */
+
+    public void pauseScreen(){
+        timeAtPause=(int) System.currentTimeMillis();
+
+        pauseScreenBackground.setVisibility(View.VISIBLE);
+        pauseScreenBackground2.setVisibility(View.VISIBLE);
+        playButton.setVisibility(View.VISIBLE);
+        quitLevelButton.setVisibility(View.VISIBLE);
+        restartLevelButton.setVisibility(View.VISIBLE);
+        pauseScreenTimeText.setVisibility(View.VISIBLE);
+
+        playButton.setClickable(true);
+        quitLevelButton.setClickable(true);
+        restartLevelButton.setClickable(true);
+
+        if (timeMinutes < 10) {
+            if (timeSeconds < 10) {
+                pauseScreenTimeText.setText("0" + Integer.toString(timeMinutes) + ":0" + Integer.toString(timeSeconds) + "/0" + Integer.toString(parTimeMinutes) + ":" + Integer.toString(parTimeSeconds));
+            } else {
+                pauseScreenTimeText.setText("0" + Integer.toString(timeMinutes) + ":" + Integer.toString(timeSeconds) + "/0" + Integer.toString(parTimeMinutes) + ":" + Integer.toString(parTimeSeconds));
+            }
+        } else {
+            if (timeSeconds < 10) {
+                pauseScreenTimeText.setText(Integer.toString(timeMinutes) + ":0" + Integer.toString(timeSeconds)+"/0"+Integer.toString(parTimeMinutes)+":"+Integer.toString(parTimeSeconds));
+            } else {
+                pauseScreenTimeText.setText(Integer.toString(timeMinutes) + ":" + Integer.toString(timeSeconds) + "/0" + Integer.toString(parTimeMinutes) + ":" + Integer.toString(parTimeSeconds));
+            }
+        }
+
+
+
+    }
 
     public void limitMovement(Ball ball, Wall wall) {
         float wy = (ball.getWidth() + wall.getWidth()) * (ball.getCenterY() - wall.getCenterY());
@@ -536,7 +629,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
 
 
-        time = (int) (System.currentTimeMillis() - timeStart);
+        time = (int) (System.currentTimeMillis() - timeStart-pausedTime);
         for (int i = 4; i < wallCounter[levelNumber]; i++) {
             if (time - mazeWall[i].getTimeTouched() > visibleThreshold) {
                 mazeWall[i].setOpacity(hide);
