@@ -1,12 +1,11 @@
 package xander.woutzijnemptyactivity;
 
-import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
@@ -16,7 +15,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
     private SensorManager sManager;
@@ -63,6 +61,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     int pausedTime=0;
     int timeAtPause=0;
     int levelNumber=0;  //level 1 equals levelNumber 0 etc
+
+    int allowMovement =1;
 
     ImageView pauseScreenBackground;
     ImageView pauseScreenBackground2;
@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     }
 
     public void restartButtonClick(View v){
-        recreate();
+        super.recreate();
     }
 
     public void playButtonClick(View v){
@@ -188,7 +188,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         playButton.setClickable(false);
         quitLevelButton.setClickable(false);
         restartLevelButton.setClickable(false);
-
+        
+        allowMovement =1;
         pausedTime=pausedTime+((int)System.currentTimeMillis()-timeAtPause);
     }
 
@@ -236,6 +237,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     public void pauseScreen(){
         timeAtPause=(int) System.currentTimeMillis();
+        allowMovement =0;
 
         pauseScreenBackground.setVisibility(View.VISIBLE);
         pauseScreenBackground2.setVisibility(View.VISIBLE);
@@ -611,8 +613,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
 
         //adjusts and then saves the angle of phone in the x and y direction.
-        x = Math.round(event.values[1]) / 3 * invert;
-        y = Math.round(-event.values[2]) / 3 * invert;
+        x = Math.round(event.values[1]) / 3 * invert * allowMovement;
+        y = Math.round(-event.values[2]) / 3 * invert * allowMovement;
 
         //limits the speed
         if (x > 15) {
